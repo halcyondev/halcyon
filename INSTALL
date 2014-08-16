@@ -1,0 +1,4 @@
+Building halcyon
+See doc/readme-qt.rst for instructions on building halcyon QT.
+
+See doc/build-*.txt for instructions on building halcyond.
