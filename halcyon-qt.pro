@@ -1,6 +1,6 @@
 TEMPLATE = app
 TARGET = halcyon-qt
-VERSION = 1.0.0
+VERSION = 1.0.1
 INCLUDEPATH += src src/json src/qt
 DEFINES += QT_GUI BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE
 CONFIG += no_include_pwd
@@ -22,21 +22,22 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 windows:LIBS += -lshlwapi
 LIBS += $$join(BOOST_LIB_PATH,,-L,) $$join(BDB_LIB_PATH,,-L,) $$join(OPENSSL_LIB_PATH,,-L,) $$join(QRENCODE_LIB_PATH,,-L,)
 LIBS += -lssl -lcrypto -ldb_cxx$$BDB_LIB_SUFFIX
+
 windows:LIBS += -lws2_32 -lole32 -loleaut32 -luuid -lgdi32
-LIBS += -lboost_system-mgw48-mt-s-1_55 -lboost_filesystem-mgw48-mt-s-1_55 -lboost_program_options-mgw48-mt-s-1_55 -lboost_thread-mgw48-mt-s-1_55
-BOOST_LIB_SUFFIX=-mgw48-mt-s-1_55
-BOOST_INCLUDE_PATH=d:/deps/boost_1_55_0
-BOOST_LIB_PATH=d:/deps/boost_1_55_0/stage/lib
-BDB_INCLUDE_PATH=d:/deps/db-4.8.30.NC/build_unix
-BDB_LIB_PATH=d:/deps/db-4.8.30.NC/build_unix
-OPENSSL_INCLUDE_PATH=d:/deps/openssl-1.0.1i/include
-OPENSSL_LIB_PATH=d:/deps/openssl-1.0.1i
-MINIUPNPC_INCLUDE_PATH=d:/deps
-LIBPNG_INCLUDE_PATH=d:/deps/libpng-1.6.9
-LIBPNG_LIB_PATH=d:/deps/libpng-1.6.9/.libs
-MINIUPNPC_LIB_PATH=d:/deps/miniupnpc
-QRENCODE_INCLUDE_PATH=d:/deps/qrencode-3.4.3
-QRENCODE_LIB_PATH=d:/deps/qrencode-3.4.3/.libs
+windows:LIBS += -lboost_system-mgw48-mt-s-1_55 -lboost_filesystem-mgw48-mt-s-1_55 -lboost_program_options-mgw48-mt-s-1_55 -lboost_thread-mgw48-mt-s-1_55
+windows:BOOST_LIB_SUFFIX=-mgw48-mt-s-1_55
+windows:BOOST_INCLUDE_PATH=d:/deps/boost_1_55_0
+windows:BOOST_LIB_PATH=d:/deps/boost_1_55_0/stage/lib
+windows:BDB_INCLUDE_PATH=d:/deps/db-4.8.30.NC/build_unix
+windows:BDB_LIB_PATH=d:/deps/db-4.8.30.NC/build_unix
+windows:OPENSSL_INCLUDE_PATH=d:/deps/openssl-1.0.1i/include
+windows:OPENSSL_LIB_PATH=d:/deps/openssl-1.0.1i
+windows:MINIUPNPC_INCLUDE_PATH=d:/deps
+windows:LIBPNG_INCLUDE_PATH=d:/deps/libpng-1.6.9
+windows:LIBPNG_LIB_PATH=d:/deps/libpng-1.6.9/.libs
+windows:MINIUPNPC_LIB_PATH=d:/deps/miniupnpc
+windows:QRENCODE_INCLUDE_PATH=d:/deps/qrencode-3.4.3
+windows:QRENCODE_LIB_PATH=d:/deps/qrencode-3.4.3/.libs
 
 
 
@@ -297,7 +298,8 @@ HEADERS += src/qt/bitcoingui.h \
 	src/sph_whirlpool.h \
     src/sph_types.h \
     src/threadsafety.h \
-    src/txdb-leveldb.h
+    src/txdb-leveldb.h \
+    src/qt/blockbrowser.h
 
 SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp \
     src/qt/transactiontablemodel.cpp \
@@ -366,7 +368,8 @@ SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp \
     src/scrypt-x86.S \
     src/scrypt-x86_64.S \
     src/scrypt.cpp \
-    src/pbkdf2.cpp 
+    src/pbkdf2.cpp \
+    src/qt/blockbrowser.cpp
 
 RESOURCES += \
     src/qt/bitcoin.qrc
@@ -383,7 +386,8 @@ FORMS += \
     src/qt/forms/sendcoinsentry.ui \
     src/qt/forms/askpassphrasedialog.ui \
     src/qt/forms/rpcconsole.ui \
-    src/qt/forms/optionsdialog.ui
+    src/qt/forms/optionsdialog.ui \
+    src/qt/forms/blockbrowser.ui
 
 contains(USE_QRCODE, 1) {
 HEADERS += src/qt/qrcodedialog.h
